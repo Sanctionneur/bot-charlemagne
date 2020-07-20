@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Grosmots = require('./liste.json')
-const Data = require('../../BotCharlemagne/data.json');
+const Data = require('./../data.json');
 module.exports = class Banword {
 
     constructor(msg) {

@@ -13,6 +13,7 @@ const Warn = require('./command/warn');
 const Clean = require('./command/clean');
 const Annonce = require('./command/annonce');
 const Bienvenue = require('./command/bienvenue')
+const Help = require('./command/help')
 
 bot.on('ready', function(){
     console.log('ready')
@@ -37,6 +38,7 @@ bot.on('message', function (msg) {
                 if (msg.content.startsWith('!latex')) new Latex(msg, Data);
                 if (msg.content.startsWith('!clean')) new Clean(msg, Data);
                 if (msg.content.startsWith('!bienvenue')) new Bienvenue(msg, Data);
+                if (msg.content.startsWith('!help')) new Help(msg, Data);
             }
         }
     }
@@ -69,23 +71,29 @@ bot.on('guildMemberAdd', async function (user) {
     }
 })
 bot.on('channelCreate', function(chan) {
-    const serv = chan.guild
-    const logchan = serv.channels.cache.find(ch => ch.name == "bot-log")
-    const embed = new Discord.MessageEmbed()
-        .setTitle('Création Channel')
-        .setColor('#ee2de7')
-        .setDescription("Le channel <#"+chan.id+"> a été créé");
-    logchan.send(embed);
+    if(chan.type!='dm') {
+        const serv = chan.guild
+        const logchan = serv.channels.cache.find(ch => ch.name == "bot-log"
+    )
+        const embed = new Discord.MessageEmbed()
+            .setTitle('Création Channel')
+            .setColor('#ee2de7')
+            .setDescription("Le channel <#" + chan.id + "> a été créé");
+        logchan.send(embed);
+    }
 })
 
 
 bot.on('channelDelete', function(chan) {
-    const serv = chan.guild
-    const logchan = serv.channels.cache.find(ch => ch.name == "bot-log")
-    const embed = new Discord.MessageEmbed()
-        .setTitle('Suppression Channel')
-        .setColor('#ee2de7')
-        .setDescription("Le channel #"+chan.name+" a été supprimé");
-    logchan.send(embed);
-})
+    if(chan.type!='dm') {
+        const serv = chan.guild
+        const logchan = serv.channels.cache.find(ch => ch.name == "bot-log"
+    )
+        const embed = new Discord.MessageEmbed()
+            .setTitle('Suppression Channel')
+            .setColor('#ee2de7')
+            .setDescription("Le channel #" + chan.name + " a été supprimé");
+        logchan.send(embed);
+    }
+    })
 bot.login(Data.token)
