@@ -25,10 +25,11 @@ bot.on('message', function (msg) {
     if(Data.debug){
         console.log(msg)
     }
-    if (msg.author.id != Data['botid']){
+    if(msg.channel.type!='dm') {
+    if (msg.author.id != Data['botid']) {
         bw = new Banword(msg);
-        if(bw.verif == 1) {
-            if(msg.content.startsWith('!')){
+        if (bw.verif == 1) {
+            if (msg.content.startsWith('!')) {
                 if (msg.content.startsWith('!annonce')) new Annonce(msg, Data);
                 if (msg.content.startsWith('!warn')) new Warn(msg, Data);
                 if (msg.content.startsWith('!sanction')) new Sanction(msg, Data);
@@ -41,6 +42,7 @@ bot.on('message', function (msg) {
                 if (msg.content.startsWith('!help')) new Help(msg, Data);
             }
         }
+    }
     }
 })
 

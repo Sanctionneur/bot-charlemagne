@@ -1,14 +1,14 @@
 const Discord = require('discord.js');
 module.exports = class command{
     constructor(msg,data){
-        let userpower = 4;
-        /*
-        userpower = 0 // sans rôle
+        //let userpower = 4;
+        
+        let userpower = 0 // sans rôle
         if(msg.member.roles.cache.find(rl => rl.id == data.carolid)) userpower = 1; // Carolingien
         if(msg.member.roles.cache.find(rl => rl.id == data.sanctionid)) userpower = 2; // Sanctionneur
         if(msg.member.roles.cache.find(rl => rl.id == data.staffid)) userpower = 3;// Staff
         if(msg.member.roles.cache.find(rl => rl.id == data.adminid)) userpower = 4; // Administrateur
-        */
+        
         this.start();
         this.msg = msg;
         this.data = data;

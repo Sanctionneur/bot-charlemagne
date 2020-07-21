@@ -3,7 +3,7 @@ const Command = require('./command');
 module.exports = class Hsay extends Command {
     start(){
         this.name = "hsay";
-        this.power = 2
+        this.power = 3
     }
     action(){
         this.parse();
